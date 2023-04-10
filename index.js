@@ -1,82 +1,45 @@
 const fs = require('fs');
-const inquirer = require("inquirer");
-const { DOMImplementation, XMLSerializer } = require("svgdom");
-const { Shape, Triangle, Circle, Square } = require("./lib/shapes");
+const inquirer = require('inquirer');
+const SVG = require('svg');
+const { Shape, Triangle, Circle, Square } = require('./lib/shapes');
 
-// Create an SVG document with the given dimensions and background color
-function createSvgDocument(width, height, bgColor) {
-  const document = new DOMImplementation().createDocument();
-  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.setAttribute("width", width);
-  svg.setAttribute("height", height);
-  svg.setAttribute("fill", bgColor);
-  document.appendChild(svg);
-  return svg;
-}
-
-// Save the SVG document to a file with the given name
-function saveSvgToFile(svg, filename) {
-  const svgString = new XMLSerializer().serializeToString(svg);
-  fs.writeFile('logo.svg')  // might not want to use writeFile... overwrite issues?
-}
-
-async function generateLogo() {
-  const answers = await inquirer.prompt([
+async function createLogo() {
+  const questions = [
     {
-      type: "list",
-      name: "shape",
-      message: "Choose a shape:",
-      choices: ["triangle", "circle", "square"],
+      type: 'list',
+      name: 'shape',
+      message: 'What shape would you like?',
+      choices: ['Triangle', 'Circle', 'Square']
     },
     {
-      type: "input",
-      name: "color",
-      message: "Choose a color:",
-      default: "#000000",
+      type: 'input',
+      name: 'shapeColor',
+      message: 'What color would you like the shape to be?'
     },
     {
-      type: "input",
-      name: "text",
-      message: "Enter text:",
+      type: 'input',
+      name: 'text',
+      message: 'What text would you like to include?'
     },
-  ]);
+    {
+      type: 'input',
+      name: 'textColor',
+      message: 'What color would you like the text to be?'
+    }
+  ];
 
-  let shape;
-  switch (answers.shape) {
-    case "triangle":
-      shape = new Triangle(answers.color);
-      break;
-    case "circle":
-      shape = new Circle(answers.color);
-      break;
-    case "square":
-      shape = new Square(answers.color);
-      break;
-    default:
-      throw new Error("Invalid shape selected");
-  }
-  const svg = createSvgDocument(500, 500, "#ffffff");
-  const shapeSvg = document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    "path"
-  );
-  shapeSvg.setAttribute("fill", shape.color);
-  shapeSvg.setAttribute("d", shape.draw());
-  svg.appendChild(shapeSvg);
+  const answers = await inquirer.prompt(questions);
+  const { shape, shapeColor, text, textColor } = answers;
 
-  const textSvg = document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    "text"
-  );
-  textSvg.setAttribute("x", "50%");
-  textSvg.setAttribute("y", "50%");
-  textSvg.setAttribute("dominant-baseline", "middle");
-  textSvg.setAttribute("text-anchor", "middle");
-  textSvg.setAttribute("font-size", "72");
-  textSvg.textContent = answers.text;
-  svg.appendChild(textSvg);
+  const ShapeClass = { Triangle, Circle, Square }[shape];
+  const logoShape = new ShapeClass(shapeColor);
 
-  saveSvgToFile(svg, "logo.svg");
+  const logoText = new SVG.Text(text).fill(textColor).move(0, 120);
+  const logo = new SVG.Group(logoShape.element, logoText);
+
+  const fileName = `${text}.svg`;
+  fs.writeFileSync(fileName, logo.toSVG());
 }
 
-generateLogo();
+createLogo();
+console.log('You did it, bruv! You did it! On behalf of myself and the rest of the community, congratulations! You are now the proud owner of a logo.svg file!');

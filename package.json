@@ -22,10 +22,12 @@
   },
   "homepage": "https://github.com/BanditHeelerPDX/svg-logo-creator#readme",
   "dependencies": {
-    "inquirer": "^8.2.4",
+    "fs": "^0.0.1-security",
+    "inquirer": "^8.2.5",
+    "svg": "^0.1.0",
     "svgdom": "^0.1.13"
   },
   "devDependencies": {
-    "jest": "^24.9.0"
+    "jest": "^29.5.0"
   }
 }
