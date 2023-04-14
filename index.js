@@ -1,45 +1,53 @@
-const fs = require('fs');
-const inquirer = require('inquirer');
-const SVG = require('svg');
-const { Shape, Triangle, Circle, Square } = require('./lib/shapes');
+const inquirer = require("inquirer");
+const { Circle, Square, Triangle } = require("./lib/shapes.js");
+const fs = require("fs");
 
-async function createLogo() {
-  const questions = [
-    {
-      type: 'list',
-      name: 'shape',
-      message: 'What shape would you like?',
-      choices: ['Triangle', 'Circle', 'Square']
-    },
-    {
-      type: 'input',
-      name: 'shapeColor',
-      message: 'What color would you like the shape to be?'
-    },
-    {
-      type: 'input',
-      name: 'text',
-      message: 'What text would you like to include?'
-    },
-    {
-      type: 'input',
-      name: 'textColor',
-      message: 'What color would you like the text to be?'
-    }
-  ];
+async function logo() {
+  const shapeQuestion = {
+    type: "list",
+    name: "shape",
+    message: "Choose a shape:",
+    choices: ["circle", "square", "triangle"],
+  };
+  const shapeColorQuestion = {
+    type: "input",
+    name: "shapeColor",
+    message: "Choose a color for the shape:",
+  };
+  const textQuestion = {
+    type: "input",
+    name: "text",
+    message: "Choose three letters of text:",
+  };
+  const textColorQuestion = {
+    type: "input",
+    name: "textColor",
+    message: "Choose a color for the text:",
+  };
 
-  const answers = await inquirer.prompt(questions);
-  const { shape, shapeColor, text, textColor } = answers;
+  const answers = await inquirer.prompt([
+    shapeQuestion,
+    shapeColorQuestion,
+    textQuestion,
+    textColorQuestion,
+  ]);
 
-  const ShapeClass = { Triangle, Circle, Square }[shape];
-  const logoShape = new ShapeClass(shapeColor);
+  let shape;
 
-  const logoText = new SVG.Text(text).fill(textColor).move(0, 120);
-  const logo = new SVG.Group(logoShape.element, logoText);
+  if (answers.shape === "circle") {
+    shape = new Circle(answers.shapeColor, answers.text, answers.textColor);
+  } else if (answers.shape === "square") {
+    shape = new Square(answers.shapeColor, answers.text, answers.textColor);
+  } else if (answers.shape === "triangle") {
+    shape = new Triangle(answers.shapeColor, answers.text, answers.textColor);
+  }
 
-  const fileName = `${text}.svg`;
-  fs.writeFileSync(fileName, logo.toSVG());
+  const svg = shape.render();
+
+  fs.writeFileSync("logo.svg", svg);
+  console.log(
+    "You did it, bruv! You did it! On behalf of myself and the rest of the community, congratulations! You are now the proud owner of a logo.svg file!"
+  );
 }
 
-createLogo();
-console.log('You did it, bruv! You did it! On behalf of myself and the rest of the community, congratulations! You are now the proud owner of a logo.svg file!');
+logo();
