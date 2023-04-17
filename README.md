@@ -5,7 +5,7 @@
       
 ## Description
       
-From the command line, the user is prompted for inputs to create a scalable vector graphics logo without the need for a graphic designer.  Simple shapes, simple text, elegant design.  [This is an example of the wonderment that can be created by this application.](https://github.com/BanditHeelerPDX/svg-logo-creator/blob/main/logo.svg)  [And if you are super lazy, you can just watch me walkthrough it all here:](https://drive.google.com/file/d/1T6-7r0GSMS10aA-JwV4-Ue__0DYyJufM/view)
+From the command line, the user is prompted for inputs to create a scalable vector graphics logo without the need for a graphic designer.  Simple shapes, simple text, elegant design.  [This is an example of the wonderment that can be created by this application.](https://github.com/BanditHeelerPDX/svg-logo-creator/blob/main/logo.svg)  [And if you are super lazy, you can just watch me walkthrough it all here.](https://drive.google.com/file/d/1T6-7r0GSMS10aA-JwV4-Ue__0DYyJufM/view)
       
 ## Table of Contents
       
