@@ -5,17 +5,17 @@
       
 ## Description
       
-From the command line, the user is prompted for inputs to create a scalable vector graphics logo without the need for a graphic designer.  Simple shapes, simple text, elegant design.  [This is an example of the wonderment that can be created by this application.](https://github.com/BanditHeelerPDX/svg-logo-creator/blob/main/logo.svg)  [And if you are super lazy, you can just watch me walkthrough it all here:](https://drive.google.com/file/d/1T6-7r0GSMS10aA-JwV4-Ue__0DYyJufM/view)
+From the command line, the user is prompted for inputs to create a scalable vector graphics logo without the need for a graphic designer.  Simple shapes, simple text, elegant design.  [This is an example of the wonderment that can be created by this application.](https://github.com/BanditHeelerPDX/svg-logo-creator/blob/main/logo.svg)  [And if you are super lazy, you can just watch me walkthrough it all here.](https://drive.google.com/file/d/1T6-7r0GSMS10aA-JwV4-Ue__0DYyJufM/view)
       
 ## Table of Contents
       
-- [Installation](https://github.com/banditheelerpdx/read-my-node#installation)
-- [Usage](https://github.com/banditheelerpdx/read-my-node#usage)
-- [License](https://github.com/banditheelerpdx/read-my-node#license)
-- [Contributing](https://github.com/banditheelerpdx/read-my-node#contributing)
-- [Tests](https://github.com/banditheelerpdx/read-my-node#tests)
-- [Questions](https://github.com/banditheelerpdx/read-my-node#questions)
-- [Contact](https://github.com/banditheelerpdx/read-my-node#contact)
+- [Installation](https://github.com/banditheelerpdx/svg-logo-creator#installation)
+- [Usage](https://github.com/banditheelerpdx/svg-logo-creator#usage)
+- [License](https://github.com/banditheelerpdx/svg-logo-creator#license)
+- [Contributing](https://github.com/banditheelerpdx/svg-logo-creator#contributing)
+- [Tests](https://github.com/banditheelerpdx/svg-logo-creator#tests)
+- [Questions](https://github.com/banditheelerpdx/svg-logo-creator#questions)
+- [Contact](https://github.com/banditheelerpdx/svg-logo-creator#contact)
 
 ## Installation
       
